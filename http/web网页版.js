@@ -2,7 +2,7 @@ const http = require('http')
 const fs = require('fs')
 const url = require('url')
 const queryString = require('querystring')
-const game = require('./14.2game')
+const game = require('./game')
 
 // 玩家赢 3 次以后，电脑说，再也不和你玩了
 let playerWonCount = 0
@@ -60,7 +60,7 @@ http
 
     if (parsedUrl.pathname === '/') {
       // 返回指定文件
-      fs.createReadStream(__dirname + '/14.1index.html')
+      fs.createReadStream(__dirname + '/index.html')
         .pipe(response)
     }
   })
