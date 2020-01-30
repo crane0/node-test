@@ -1,4 +1,3 @@
-
 // from，以此内容创建
 const buffer1 = Buffer.from('crane')
 const buffer2 = Buffer.from([1, 2, 3, 4])
