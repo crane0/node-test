@@ -42,3 +42,10 @@ const bufferProto = schema.Column.encode({
 console.log(bufferProto) // <Buffer 08 01 12 05 63 72 61 6e 65 1d cd cc aa 42>
 // 这里会有浮点数的出现，需要在解码后，手动处理。
 console.log(schema.Column.decode(bufferProto)) // { id: 1, name: 'crane', price: 85.4000015258789 }
+
+
+const buf = Buffer.from([0, 5]); // <Buffer 00 05>
+// 高位在后
+console.log(buf.readInt16LE(0)); // 1280（ 16进制的 500 转为 10进制就是 1280）
+// 高位在前
+console.log(buf.readInt16BE(0)); // 5
