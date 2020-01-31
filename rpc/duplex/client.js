@@ -29,9 +29,6 @@ const lessonids = [
   "146582"
 ]
 
-
-let id = Math.floor(Math.random() * lessonids.length)
-
 // 监听接收的服务端数据
 socket.on('data', buffer => {
   // 全：取出对应的 buffer
@@ -48,10 +45,18 @@ let seq = 0
 function encode(index) {
   // 全：扩大长度，并在前两位写入，lessonid 就要从 2 位置写入
   let buffer = Buffer.alloc(6)
-  buffer.writeInt16BE(seq++)
+  buffer.writeInt16BE(seq)
+  // 在第 2 位写，是因为 seq 占了两位。
   buffer.writeInt32BE(lessonids[index], 2)
+
+  console.log(seq, lessonids[index])
+  seq++
+
   return buffer
 }
 
-// 往服务器传数据
-socket.write(encode(id))
+// 往服务器传数据，server 设置为不同的时间间隔返回，就可以模拟出服务端数据未返回时，又再次请求。
+setInterval(() => {
+  let id = Math.floor(Math.random() * lessonids.length)
+  socket.write(encode(id))
+}, 50);

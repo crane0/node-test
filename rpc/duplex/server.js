@@ -14,7 +14,8 @@ const server = net.createServer(socket => {
         Buffer.from(data[lessonid])
       ])
       socket.write(buffer)
-    }, 1000)
+      // 不同的时间间隔返回，
+    }, 10 + Math.random() * 1000)
   })
 })
 

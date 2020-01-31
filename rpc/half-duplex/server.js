@@ -4,7 +4,6 @@ const net = require('net')
 const server = net.createServer(socket => {
   socket.on('data', function(buffer) {
     const lessonid = buffer.readInt32BE()
-    console.log(buffer, lessonid)
     setTimeout(() => {
       socket.write(Buffer.from(data[lessonid]))
     }, 1000)
