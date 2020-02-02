@@ -112,4 +112,12 @@ app.use(
   })
 )
 
+// 用于测试 post 请求
+app.use(
+  mount('/mypost', function(ctx) {
+    ctx.status = 200
+    ctx.body = 'post请求'
+  })
+)
+
 app.listen(3000)

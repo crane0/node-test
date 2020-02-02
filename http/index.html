@@ -11,6 +11,7 @@
   <button id="rock" style="display: inline-block; width: 60px; height: 30px;">石头</button>
   <button id="scissor" style="display: inline-block; width: 60px; height: 30px;">剪刀</button>
   <button id="paper" style="display: inline-block; width: 60px; height: 30px;">布</button>
+  <button id="post" style="display: inline-block; width: 60px; height: 30px;">post</button>
 </body>
 <script>
   const $button = {
@@ -31,6 +32,28 @@
           $output.innerHTML += text + '<br/>'
         })
     })
+  })
+
+  // 用于测试 post 请求，和这个项目无关。
+  const $post = document.getElementById('post')
+  $post.addEventListener('click', function () {
+    const data = {name: 'crane'}
+    fetch(`http://${location.host}/mypost`, {
+      method: 'POST',
+      body: JSON.stringify(data), // data can be `string` or {object}!
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    })
+        .then(res => {
+          console.log('res', res)
+          // https://devhints.io/js-fetch
+          // fetch 语法 res.text() ，返回的是 response body
+          return res.text()
+        })
+        .then(text => {
+          console.log('text', text)
+        })
   })
 </script>
 </html>

@@ -14,7 +14,7 @@ http
     // res.end('hello')
 
     // 返回指定文件
-    fs.createReadStream(__dirname + '/13.1index.html')
+    fs.createReadStream(__dirname + '/index.html')
       .pipe(response)
   })
   .listen(3000)
