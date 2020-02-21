@@ -1,3 +1,5 @@
+// 主进程运行后并不会退出，因为子进程可能还有其他操作。
+
 const cp = require('child_process')
 
 // 路径是子进程的入口文件，相当于在 node.js 中又跑了一个 node.js 
